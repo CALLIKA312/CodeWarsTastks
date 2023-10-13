@@ -2,9 +2,8 @@ package OptimizationProcesses;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.Date;
 
-public class Task3 {
+public class Task3_1 {
 
     //6. В приюте для животных есть только собаки и кошки, а работа осуществляется в порядке очереди.
     // Люди должны каждый раз забирать «самое старое» (по времени пребывания в питомнике) животное, но могут выбрать кошку или собаку (животное в любом случае будет «самым старым»).
