@@ -1,4 +1,4 @@
-package OptimizationProcesses;
+package OptimizationProcesses.L1;
 
 public class Task1 {
     //6. Реализуйте метод для выполнения простейшего сжатия строк с использованием счетчика повторяющихся символов.
