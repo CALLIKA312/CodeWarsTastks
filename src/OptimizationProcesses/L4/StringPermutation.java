@@ -5,7 +5,7 @@ import java.util.List;
 
 public class StringPermutation {
     public static void main(String[] args) {
-        String input = "abc";
+        String input = "abcd";
         List<String> permutations = generatePermutations(input);
 
         System.out.println("Перестановки строки " + input + ":");
@@ -29,7 +29,7 @@ public class StringPermutation {
         for (int i = index; i < chars.length; i++) {
             swap(chars, index, i);
             generatePermutationsHelper(chars, index + 1, result);
-            swap(chars, index, i);  // Возвращаем к исходному состоянию для следующей итерации
+            swap(chars, index, i);
         }
     }
 
