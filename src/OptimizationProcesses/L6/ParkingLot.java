@@ -3,12 +3,20 @@ package OptimizationProcesses.L6;
 import java.util.ArrayList;
 
 class ParkingLot {
-    private final ArrayList<ParkingSpot> spots;
+    private ArrayList<ParkingSpot> spots;
 
     public ParkingLot(int capacity) {
-        spots = new ArrayList<>();
-        for (int i = 1; i <= capacity; i++)
-            spots.add(new ParkingSpot(i));
+        spots = new ArrayList<>(capacity);
+        int handicappedSpotSize = capacity / 5;
+        if (handicappedSpotSize < 1) {
+            for (int i = 1; i <= capacity; i++)
+                spots.add(new ParkingSpot(i, ParkingSpotType.ANY));
+        } else {
+            for (int i = 1; i <= capacity - handicappedSpotSize; i++)
+                spots.add(new ParkingSpot(i, ParkingSpotType.REGULAR));
+            for (int i = capacity - handicappedSpotSize + 1; i <= capacity; i++)
+                spots.add(new ParkingSpot(i, ParkingSpotType.HANDICAPPED));
+        }
     }
 
     public ArrayList<ParkingSpot> getAvailableSpots() {
@@ -21,15 +29,19 @@ class ParkingLot {
 
     public boolean parkCar(Car car) {
         ArrayList<ParkingSpot> availableSpots = getAvailableSpots();
-        if (!availableSpots.isEmpty()) {
-            ParkingSpot spot = availableSpots.get(0);
-            spot.occupy();
-            System.out.println("Car " + car.getLicensePlate() + " parked at spot " + spot.getSpotNumber());
-            return true;
-        } else {
-            System.out.println("No available parking spots for car " + car.getLicensePlate());
-            return false;
+        for (ParkingSpot spot : availableSpots) {
+            if (car.getSpotType() == ParkingSpotType.HANDICAPPED ||
+                    (car.getSpotType() == ParkingSpotType.REGULAR && spot.getSpotType() != ParkingSpotType.HANDICAPPED)) {
+                spot.occupy();
+                System.out.println("Car " + car.getLicensePlate() + " parked at spot " + spot.getSpotNumber());
+                return true;
+            } else {
+                System.out.println("Car " + car.getLicensePlate() + " spot type mismatch ");
+                return false;
+            }
         }
+        System.out.println("No available parking spots for car " + car.getLicensePlate());
+        return false;
     }
 
     public void vacateSpot(int spotNumber) {
@@ -43,9 +55,11 @@ class ParkingLot {
         System.out.println("Invalid spot number: " + spotNumber);
     }
 
+
     public void printParkingStatus() {
         System.out.println("Parking Lot Status:");
-        for (ParkingSpot spot : spots)
+        for (ParkingSpot spot : spots) {
             System.out.println(spot);
+        }
     }
 }

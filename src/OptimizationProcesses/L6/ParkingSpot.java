@@ -1,12 +1,14 @@
 package OptimizationProcesses.L6;
 
 class ParkingSpot {
-    private final int spotNumber;
+    private int spotNumber;
     private boolean occupied;
+    private ParkingSpotType spotType;
 
-    public ParkingSpot(int spotNumber) {
+    public ParkingSpot(int spotNumber, ParkingSpotType spotType) {
         this.spotNumber = spotNumber;
         this.occupied = false;
+        this.spotType = spotType;
     }
 
     public int getSpotNumber() {
@@ -15,6 +17,10 @@ class ParkingSpot {
 
     public boolean isOccupied() {
         return occupied;
+    }
+
+    public ParkingSpotType getSpotType() {
+        return spotType;
     }
 
     public void occupy() {
@@ -30,6 +36,7 @@ class ParkingSpot {
         return "ParkingSpot{" +
                 "spotNumber=" + spotNumber +
                 ", occupied=" + occupied +
+                ", spotType=" + spotType +
                 '}';
     }
 }
