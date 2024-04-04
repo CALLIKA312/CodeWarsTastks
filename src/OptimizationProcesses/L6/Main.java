@@ -3,7 +3,7 @@ package OptimizationProcesses.L6;
 public class Main {
     public static void main(String[] args) {
         // Создаем автостоянку на 10 мест
-        ParkingLot parkingLot = new ParkingLot(5);
+        ParkingLot parkingLot = new ParkingLot(4);
 
         // Создаем несколько автомобилей разных размеров
         Car car1 = new Car("ABC123",  ParkingSpotType.REGULAR);
@@ -11,7 +11,6 @@ public class Main {
         Car car3 = new Car("DEF456",  ParkingSpotType.HANDICAPPED);
 
         // Паркуем автомобили
-        parkingLot.parkCar(car1);
         parkingLot.parkCar(car1);
         parkingLot.parkCar(car1);
         parkingLot.parkCar(car1);
